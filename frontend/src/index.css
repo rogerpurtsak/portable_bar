@@ -36,7 +36,7 @@ a {
 
 /* Siit maalt algavad meie lehe stiilid */
 body {
-  background-color: lightgray;
+  background-color: #483C32;
 }
 
 .navbar {
@@ -44,7 +44,7 @@ body {
   display: flex;
   justify-content: center;
   gap: 16px;
-  padding: 4px;
+  padding: 30px;
 }
 
 .contact-card {
