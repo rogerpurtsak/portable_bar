@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  line-height: 1.5;
+  font-family: sans-serif;
+}
+
+img,
+picture,
+video,
+canvas {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Siit maalt algavad meie lehe stiilid */
+body {
+  background-color: lightgray;
+}
+
+.navbar {
+  background-color: gray;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 4px;
+}
+
+.contact-card {
+  background-color: gray;
+  padding: 6px 20px;
+  border-radius: 8px;
+  width: fit-content;
+  margin-top: 8px;
+}
+
+.tekstikas {
+  background-color: peachpuff;
+}
