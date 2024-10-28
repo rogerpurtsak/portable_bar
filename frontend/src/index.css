@@ -44,7 +44,7 @@ body {
   display: flex;
   justify-content: center;
   gap: 16px;
-  padding: 30px;
+  padding: 25px;
 }
 
 .contact-card {
