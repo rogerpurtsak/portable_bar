@@ -1,8 +1,9 @@
+import "./broneeri.css";
 
 function Broneeri() {
     return (
-      <div>
-        <h2>Broneeri yap</h2>
+      <div className="broneeri-body">
+        <h2 className="broneeri-text">Broneeri yap</h2>
         <p>Muu kirjeldav tekst!</p>
       </div>
     );
