@@ -1,0 +1,8 @@
+.home-body {
+    background-color: aliceblue; /*juhul kui see baby tootama ei peaks*/
+    background-image: url(hoodindex.jpg);
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;
+}
