@@ -1,8 +1,36 @@
 .broneeri-body {
     background-color: aliceblue;
     min-height: 100vh;
+    padding: 20 px;
+    border-radius: 8px;
+    width: 300px;
+    margin: 0 auto;
 }
 
 .broneeri-text {
-    font-size: 300px;
+    font-size: 60px;
+    color: black
+}
+
+.broneeri-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.broneeri-form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.broneeri-form button {
+    padding: 10px;
+    font-size: 1 em;
+    background-color: aqua;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
