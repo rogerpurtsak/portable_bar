@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import Meist from "./pages/Meist";
 import Galerii from "./pages/Galerii";
 import Broneeri from "./pages/Broneeri";
-import Profiil from "./pages/Profiil";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         <Route path="/meist" element={<Meist />} />
         <Route path="/galerii" element={<Galerii />} />
         <Route path="/broneeri" element={<Broneeri />} />
-        <Route path="/profiil" element={<Profiil />} />
+        <Route path="/login" element={<Login />} />
 
       </Routes>
       </div>
