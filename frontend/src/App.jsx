@@ -17,12 +17,7 @@ function App() {
         <Route path="/meist" element={<Meist />} />
         <Route path="/galerii" element={<Galerii />} />
         <Route path="/broneeri" element={<Broneeri />} />
-<<<<<<< HEAD
         <Route path="/login" element={<Login />} />
-
-=======
-        <Route path="/profiil" element={<Profiil />} />
->>>>>>> Broneeri_body_change
       </Routes>
 
       </div>
