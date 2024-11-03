@@ -1,36 +1,90 @@
+.broneeri-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
 .broneeri-body {
-    background-color: aliceblue;
-    min-height: 100vh;
-    padding: 20 px;
-    border-radius: 8px;
-    width: 300px;
-    margin: 0 auto;
+    background-color: rgb(223, 217, 217);
+    min-height: auto;
+    padding: 20px;
+    border-radius: 15px;
+    width: 280px;
+    margin: 50px auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 180px;
 }
 
 .broneeri-text {
-    font-size: 60px;
-    color: black
+    font-size: 50px;
+    color: #483C32;
 }
 
 .broneeri-form {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-left: 20px;
 }
 
-.broneeri-form input {
+/*.broneeri-form input,
+.broneeri-form textarea {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 1em;
+    font-size: 14px;
+} See on, kui teeb sõnumi tekstikasti ka*/
+
+.broneeri-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 20px;
+}
+
+.broneeri-form input {
+    resize: vertical; /* Lubage vertikaalne muutmine */
+    min-height: 100px; /* Vähemalt 100px kõrgus */
+    margin-bottom: 20px;
 }
 
 .broneeri-form button {
     padding: 10px;
-    font-size: 1 em;
-    background-color: aqua;
-    color: black;
+    font-size: 1em;
+    /*background-color: rgb(33, 131, 131);*/
+    color: #C0A897;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.broneeri-body p {
+    margin-bottom: 30px;
+}
+
+.broneeri-body input {
+    margin-bottom: 20px;
+    padding-left: 10px; 
+    background-color: white;
+    border-style: solid;
+}
+
+.broneeri-body button {
+    /*margin-bottom: 40px;*/ 
+    padding: 18px;
+    border-radius: 20px;
+    background-color: #C0A897;
+    color:white 
+}
+
+.broneeri-body:after {
+    content: "";
+    display: block;
+    height: 0; /* Eemaldage joon */
 }

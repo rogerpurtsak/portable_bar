@@ -18,10 +18,11 @@ function App() {
         <Route path="/galerii" element={<Galerii />} />
         <Route path="/broneeri" element={<Broneeri />} />
         <Route path="/profiil" element={<Profiil />} />
-
       </Routes>
+
       </div>
     </Router>
+
   );
 }
 
