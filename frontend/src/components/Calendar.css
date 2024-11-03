@@ -1,0 +1,38 @@
+/* Ei ole kindel kas kõike seda on vaja */
+.booked {
+    background-color: #C0A897;/* taust broneeritud kuupäevadele */
+    color: black;
+}
+
+.calendar {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: -450px;
+    margin-left: 200px;
+}
+
+.react-calendar {
+    border: none !important; /* Eemaldab kalendri äärise */
+}
+
+.selected-date {
+    margin-top: 15px; /* Võite muuta väärtust vastavalt soovile */
+    color: white
+}
+
+.book-button { /* Muuda see rida */
+    padding: 12px 24px; /* Suurendab nupu sisu */
+    font-size: 16px; /* Suurendab teksti suurust nupul */
+    border-radius: 25px; /* Muudab nupu kumeramaks */
+    background-color: #C0A897; /* Taustavärv */
+    color: white; /* Teksti värv */
+    border: none; /* Eemaldab nupu äärise */
+    cursor: pointer; /* Muudab kursorit */
+    transition: background-color 0.3s; /* Lisab sujuva ülemineku */
+    margin-top: 10px;
+}
+
+.book-button:hover:hover {
+    background-color: #C0A897; /* Muudab taustavärvi, kui hiir on nupu kohal */
+}
