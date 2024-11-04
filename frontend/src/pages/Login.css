@@ -1,11 +1,9 @@
 .auth-container {
     display: flex;
     justify-content: flex-end;
-    /* Joondatud paremale */
     align-items: center;
     min-height: 100vh;
     background-image: url('/backgroundbarimage.jpg');
-
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -13,30 +11,37 @@
 }
 
 .auth-form {
-    background-color: rgba(255, 255, 255, 0.6);
-    /* Semi-transparent white background */
+    animation: fadeIn 1s ease-in-out;
+        background-color: rgba(255, 255, 255, 0.6);
     padding: 40px;
     border-radius: 10px;
     width: 400px;
-    /* Adjust width as needed */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    /* Stronger shadow for depth */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .auth-form h1 {
     margin-bottom: 20px;
     font-size: 28px;
-    /* Larger font size */
     color: #333;
     font-weight: 700;
-    /* Bold */
 }
 
 .auth-form p {
     margin-bottom: 20px;
-    color: #666;
+    color: #444;
     font-size: 16px;
-    /* Adjust size */
 }
 
 .form-group {
@@ -47,14 +52,12 @@
     display: block;
     margin-bottom: 5px;
     font-weight: 600;
-    /* Slightly bolder text */
     color: #333;
 }
 
 .form-group input {
     width: 100%;
     padding: 12px;
-    /* Increase padding for better feel */
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 14px;
@@ -69,16 +72,37 @@
 .submit-btn {
     width: 100%;
     padding: 14px;
-    /* Larger padding */
-    background-color: #000;
+    background-color: #483C32;
     color: #fff;
     border: none;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .submit-btn:hover {
-    background-color: #333;
+    background-color: #2d251f;
+        color: #B79286;
+    }
+    
+    .toggle-link {
+        margin-top: 20px;
+        color: #000;
+        cursor: pointer;
+        text-align: center;
+        font-size: 14px;
+        text-decoration: underline;
+        transition: color 0.3s;
+    }
+    
+    .toggle-link:hover {
+        color: #620756;
+    }
+    
+    .submit-btn:active {
+        transform: scale(0.98);
+        /* Slightly reduces the button size */
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        /* Reduces the shadow */
 }
