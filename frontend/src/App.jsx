@@ -5,6 +5,7 @@ import Meist from "./pages/Meist";
 import Galerii from "./pages/Galerii";
 import Broneeri from "./pages/Broneeri";
 import Login from "./pages/Login";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -19,8 +20,8 @@ function App() {
         <Route path="/broneeri" element={<Broneeri />} />
         <Route path="/login" element={<Login />} />
       </Routes>
-
       </div>
+      <Footer/>
     </Router>
 
   );

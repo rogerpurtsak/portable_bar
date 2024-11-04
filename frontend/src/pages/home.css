@@ -9,14 +9,13 @@
     flex-direction: column;
     align-items: center;
     position: relative;
+    justify-content: center;
+    gap: 40vh;
 
 }
 
 .home-text {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    position: absolute;
-    top: 150px;
-    left: 15vw;
     font-size: 50px;
     color: #FFFF;
     background-color: rgba(72, 60, 50, 0.5);
@@ -39,6 +38,17 @@
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
     width: 100vw;
     margin-top: auto;
+    display: flex;
+    justify-content: center;
+
+}
+
+.social {
+    display: flex;
+    flex-direction: row;
+    gap: 20vw;
+    font-size: 15px;
+
 }
 
 .social a {
@@ -46,7 +56,7 @@
     margin: 0 10px;
     text-decoration: none;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 20px;
+    
 }
 
 .social a:hover {
