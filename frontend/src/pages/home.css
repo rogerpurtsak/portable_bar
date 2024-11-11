@@ -11,17 +11,20 @@
     position: relative;
     justify-content: center;
     gap: 40vh;
+    padding: 20px;
 
 }
 
 .home-text {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 50px;
+    font-size: 2.5rem;
     color: #FFFF;
     background-color: rgba(72, 60, 50, 0.5);
     padding: 10px 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    justify-content: center;
+    text-align: center;
 }
 
 .click:hover {
@@ -30,35 +33,19 @@
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-.footer {
-    background-color: #483C32;
-    color: #fff;
-    padding: 20px;
+.telli-link {
+    display: flex;
     text-align: center;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
-    width: 100vw;
-    margin-top: auto;
-    display: flex;
-    justify-content: center;
-
 }
 
-.social {
-    display: flex;
-    flex-direction: row;
-    gap: 20vw;
-    font-size: 15px;
-
+@media (max-width: 700px) {
+    .home-text {
+        font-size: 2rem;
+    }
 }
 
-.social a {
-    color: #fff;
-    margin: 0 10px;
-    text-decoration: none;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    
-}
-
-.social a:hover {
-    text-decoration: underline;
+@media (max-width: 1280px) {
+    .home-text {
+        font-size: 2rem;
+    }
 }
