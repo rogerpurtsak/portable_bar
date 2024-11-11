@@ -12,11 +12,12 @@
 
 .auth-form {
     animation: fadeIn 1s ease-in-out;
-        background-color: rgba(255, 255, 255, 0.6);
+        background-color: rgb(72, 60, 50, 0.9);
     padding: 40px;
-    border-radius: 10px;
+    border-radius: 12px;
+        box-shadow: 0 4px 12px #9a643e;
     width: 400px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    
 }
 
 @keyframes fadeIn {
@@ -34,13 +35,14 @@
 .auth-form h1 {
     margin-bottom: 20px;
     font-size: 28px;
-    color: #333;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        color: #fff;
     font-weight: 700;
 }
 
 .auth-form p {
     margin-bottom: 20px;
-    color: #444;
+    color: #C0A897;
     font-size: 16px;
 }
 
@@ -51,8 +53,8 @@
 .form-group label {
     display: block;
     margin-bottom: 5px;
-    font-weight: 600;
-    color: #333;
+    font-weight: 400;
+        color: #C0A897;
 }
 
 .form-group input {
@@ -72,7 +74,7 @@
 .submit-btn {
     width: 100%;
     padding: 14px;
-    background-color: #483C32;
+    background-color: #9a643e;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -97,7 +99,7 @@
     }
     
     .toggle-link:hover {
-        color: #620756;
+        color: #ac2a9b;
     }
     
     .submit-btn:active {

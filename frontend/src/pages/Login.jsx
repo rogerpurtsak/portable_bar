@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './Login.css';
 import backgroundImage from '../assets/backgroundbarimage.jpg';
 
-function Login() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+function Login({ setIsAuthenticated }) {
   const [isCreating, setIsCreating] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -18,8 +17,8 @@ function Login() {
     e.preventDefault();
     console.log('Sisselogimas:', { email, password });
     if (email && password) {
-      setIsAuthenticated(true);
-      navigate('/Kasutaja');
+      setIsAuthenticated(true); // Update authentication state in App.js
+      navigate('/Kasutaja'); // Navigate to account page
     } else {
       alert('Kasutajaandmed on valed');
     }
@@ -31,7 +30,8 @@ function Login() {
     if (email && password && phone && firstName && lastName) {
       alert('Registreerimine õnnestus!');
       setIsCreating(false);
-      navigate('/Kasutaja');
+      setIsAuthenticated(true); // Update authentication state in App.js
+      navigate('/Kasutaja'); // Navigate to account page
     } else {
       alert('Palun täitke kõik väljad!');
     }
@@ -39,68 +39,68 @@ function Login() {
 
   return (
     <div 
-      className='auth-container'
+      className="auth-container"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      <div className='auth-form'>
+      <div className="auth-form">
         {isCreating ? (
           <>
             <h1>Loo kasutaja</h1>
             <p>Tere tulemast!</p>
             <form onSubmit={handleCreate}>
-              <div className='form-group'>
+              <div className="form-group">
                 <label>Meiliaadress</label>
                 <input
-                  type='email'
+                  type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder='Meiliaadress'
+                  placeholder="Meiliaadress"
                   required
                 />
               </div>
-              <div className='form-group'>
+              <div className="form-group">
                 <label>Telefoninumber</label>
                 <input
-                  type='tel'
+                  type="tel"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  placeholder='Telefoninumber'
+                  placeholder="Telefoninumber"
                   required
                 />
               </div>
-              <div className='form-group'>
+              <div className="form-group">
                 <label>Eesnimi</label>
                 <input
-                  type='text'
+                  type="text"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
-                  placeholder='Eesnimi'
+                  placeholder="Eesnimi"
                   required
                 />
               </div>
-              <div className='form-group'>
+              <div className="form-group">
                 <label>Perenimi</label>
                 <input
-                  type='text'
+                  type="text"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
-                  placeholder='Perenimi'
+                  placeholder="Perenimi"
                   required
                 />
               </div>
-              <div className='form-group'>
+              <div className="form-group">
                 <label>Parool</label>
                 <input
-                  type='password'
+                  type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder='Parool'
+                  placeholder="Parool"
                   required
                 />
               </div>
-              <button type='submit' className='submit-btn'>Loo kasutaja</button>
+              <button type="submit" className="submit-btn">Loo kasutaja</button>
             </form>
-            <p onClick={() => setIsCreating(false)} className='toggle-link'>
+            <p onClick={() => setIsCreating(false)} className="toggle-link">
               Kas sul on juba konto? Logi sisse
             </p>
           </>
@@ -109,29 +109,29 @@ function Login() {
             <h1>Sisselogimine</h1>
             <p>Tere tulemast tagasi!</p>
             <form onSubmit={handleLogin}>
-              <div className='form-group'>
+              <div className="form-group">
                 <label>Kasutajatunnus</label>
                 <input
-                  type='text'
+                  type="text"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder='Meil või telefoninumber'
+                  placeholder="Meil või telefoninumber"
                   required
                 />
               </div>
-              <div className='form-group'>
+              <div className="form-group">
                 <label>Parool</label>
                 <input
-                  type='password'
+                  type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder='Parool'
+                  placeholder="Parool"
                   required
                 />
               </div>
-              <button type='submit' className='submit-btn'>Logi sisse</button>
+              <button type="submit" className="submit-btn">Logi sisse</button>
             </form>
-            <p onClick={() => setIsCreating(true)} className='toggle-link'>
+            <p onClick={() => setIsCreating(true)} className="toggle-link">
               Kas sul pole veel kontot? Loo kasutaja
             </p>
           </>
