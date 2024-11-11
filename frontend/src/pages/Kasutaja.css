@@ -22,13 +22,60 @@
 }
 
 .sisu {
-    max-width: 800px;
+    display: flex;
+        flex-direction: column;
+        max-width: 600px;
     width: 100%;
     padding: 30px;
     background-color: #C0A897;
     border-radius: 12px;
     box-shadow: 0 4px 12px #9a643e;
     text-align: left;
+}
+/*pisem*/
+@media (max-width: 700px) {
+    .sisu {
+        padding: 20px;
+        max-width: 90%;
+        /* peenem */
+    }
+
+    .sisu h1 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        /* tiba väiksem */
+    }
+
+    .kasutaja-info,
+    .konto-seaded {
+        padding: 15px;
+        /* less padding */
+    }
+
+    .user-button,
+    .settings-button {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+}
+
+/*täiesti tibatillu*/
+@media (max-width: 480px) {
+    .sisu h1 {
+        font-size: 1.5rem;
+    }
+
+    .user-button,
+    .settings-button {
+        font-size: 0.8rem;
+    }
+
+    .form-group label,
+    .form-group input,
+    .kasutaja-info p,
+    .konto-seaded p {
+        font-size: 0.9rem;
+    }
 }
 
 .sisu h1 {
@@ -105,6 +152,8 @@
     font-size: 1rem;
     width: 100%;
     box-sizing: border-box;
+    border-radius: 8px;
+        border: 1px solid #9a643e;
 }
 
 .kasutaja-info p,
