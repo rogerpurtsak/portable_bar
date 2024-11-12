@@ -8,7 +8,7 @@
 }
 
 .broneeri-body {
-    background-color: rgb(223, 217, 217);
+    background-color: #C0A897;
     min-height: auto;
     padding: 20px;
     border-radius: 15px;
@@ -58,7 +58,7 @@
     padding: 10px;
     font-size: 1em;
     /*background-color: rgb(33, 131, 131);*/
-    color: #C0A897;
+    color: #CC7B40;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -79,7 +79,7 @@
     /*margin-bottom: 40px;*/ 
     padding: 18px;
     border-radius: 20px;
-    background-color: #C0A897;
+    background-color: #CC7B40;
     color:white 
 }
 

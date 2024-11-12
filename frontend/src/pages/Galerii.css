@@ -1,0 +1,57 @@
+.galerii-container {
+    position: relative;
+    padding: 40px;
+    color: white;
+    text-align: center;
+    height: 100vh;
+  }
+
+  .galerii-container h2 {
+    margin-bottom: 70px; 
+  }
+
+  .piltide-galerii {
+    position: relative;
+    height: 600px; /* kõrgus diagonaalseks paigutuseks */
+  }
+  
+  .pilt-container {
+    position: absolute;
+    width: 400px; /* pildi suurus */
+    height: auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Diagonaalne paigutus */
+  .pilt-container:nth-child(1) {
+    top: 0;
+    left: 0;
+  }
+  
+  .pilt-container:nth-child(2) {
+    top: 100px;
+    left: 150px;
+  }
+  
+  .pilt-container:nth-child(3) {
+    top: 200px;
+    left: 1000px;
+  }
+  
+  .pilt-container:nth-child(4) {
+    top: 300px;
+    left: 450px;
+  }
+  
+  
+  /*.piltide-galerii {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    align-items: center;
+    justify-items: center;
+  }*/
+
+  
