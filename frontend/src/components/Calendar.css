@@ -8,8 +8,6 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    margin-top: -450px;
-    margin-left: 200px;
 }
 
 .react-calendar {
@@ -36,3 +34,4 @@
 .book-button:hover:hover {
     background-color: #C0A897; /* Muudab taustavärvi, kui hiir on nupu kohal */
 }
+

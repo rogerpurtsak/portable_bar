@@ -8,12 +8,13 @@ function Broneeri() {
         <div className="broneeri-container">
         <div className="broneeri-body">
           <h2 className="broneeri-text">Telli rändbaar</h2>
-          <form className="broneeri-form"></form>
+          <form className="broneeri-form">
           <input type="text" placeholder="Ees- ja perekonnanimi" />
           <input type="email" placeholder="Email" />
           <input type="text" placeholder="Joogivalikust loe rohkem" />
           {/*<textarea placeholder="Sõnum" required></textarea> {/* Siin on tekstikast */}
           <button type="submit">Broneeri</button>
+          </form>
           </div>
         </div>
         <div className="calendar">
