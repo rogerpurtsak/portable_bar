@@ -1,6 +1,7 @@
+@media (max-width: 768px) {
 .broneeri-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 20px;
     justify-content: center;
     align-items: center;
@@ -10,31 +11,25 @@
 .broneeri-body {
     background-color: #C0A897;
     min-height: auto;
-    padding: 20px;
     border-radius: 15px;
-    width: 280px;
-    margin: 50px auto;
-    padding: 20px;
+    width: 90%;
+    margin: 10px auto;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 180px;
 }
 
 .broneeri-text {
-    font-size: 50px;
+    font-size: 36px;
+    text-align: center;
     color: #483C32;
 }
 
-.broneeri-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-left: 20px;
-}
 
 /*.broneeri-form input,
 .broneeri-form textarea {
+
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -45,23 +40,27 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-left: 20px;
+    margin-left: 0;
+    width: 100%;
+
 }
 
 .broneeri-form input {
     resize: vertical; /* Lubage vertikaalne muutmine */
-    min-height: 100px; /* Vähemalt 100px kõrgus */
-    margin-bottom: 20px;
+    min-height: 50px; /* Vähemalt 100px kõrgus */
+    margin-bottom: 15px;
+    width: 100%; 
 }
 
 .broneeri-form button {
     padding: 10px;
-    font-size: 1em;
+    font-size: 1rem;
     /*background-color: rgb(33, 131, 131);*/
     color: #CC7B40;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    width: 100%;
 }
 
 .broneeri-body p {
@@ -87,4 +86,33 @@
     content: "";
     display: block;
     height: 0; /* Eemaldage joon */
+}
+}
+
+/* Suuremad ekraanid - min-width: 1024px */
+@media (min-width: 1024px) {
+    .broneeri-container {
+        flex-direction: row; /* Kalender ja vorm kõrvuti */
+        gap: 50px;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 40px;
+        width: 100%;
+        margin: 0 auto;  
+    }
+
+    .broneeri-body {
+        width: 40%;
+        max-width: 500px; /* Piira vormi maksimaalne laius */
+    }
+
+    .calendar {
+        width: 40%;
+        max-width: 500px; /* Piira kalendri maksimaalne laius */
+    }
+
+    .broneeri-text {
+        font-size: 48px; /* Suurem pealkiri */
+        text-align: left; /* Vasakule joondus */
+    }
 }
