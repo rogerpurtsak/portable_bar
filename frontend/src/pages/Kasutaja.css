@@ -59,24 +59,6 @@
     }
 }
 
-/*täiesti tibatillu*/
-@media (max-width: 480px) {
-    .sisu h1 {
-        font-size: 1.5rem;
-    }
-
-    .user-button,
-    .settings-button {
-        font-size: 0.8rem;
-    }
-
-    .form-group label,
-    .form-group input,
-    .kasutaja-info p,
-    .konto-seaded p {
-        font-size: 0.9rem;
-    }
-}
 
 .sisu h1 {
     font-size: 2rem;
