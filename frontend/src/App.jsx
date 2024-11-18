@@ -35,6 +35,7 @@ function App() {
             element={isAuthenticated ? <Kasutaja /> : <Navigate to="/login" />}
           />  
       </Routes>
+
       </div>
       <Footer/>
     </Router>
