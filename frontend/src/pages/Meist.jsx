@@ -6,7 +6,7 @@ function Meist() {
             <BackgroundSection
                 title="MEIE SÜND."
                 text1="Läbi aastate inimeste teenindamine toob välja igas inimeses kire seda rõõmu inimeste näol veelgi näha. Otsustasime asutada enda teenuse, millega toome pudeliteviisi rõõmu teieni koos tipptasemel teenindusega."
-                imageSrc="public/hood_jook.jpg"
+                imageSrc="/hood_jook.jpg"
                 customStyles={{
                     minHeight: '60vh',
                     color: 'black',
@@ -18,7 +18,7 @@ function Meist() {
             <BackgroundSection
                 title="BAARMENID."
                 text1="Antud rõõmukoosseis sisaldab Gregorit lorem ipsum lorem ipsum lorem ipsum lorem ipsum ja Jaanust lorem ipsum lorem ipsum lorem ipsum lorem ipsum."
-                imageSrc="public/hood_naine.jpg"
+                imageSrc="/hood_naine.jpg"
                 customStyles={{
                     minHeight: '60vh',
                     color: 'black',
@@ -30,7 +30,7 @@ function Meist() {
             <BackgroundSection
                 title="DJ."
                 text1="Kooseisu saate ka soetada plaadikeerutaja, kes muretseb meloodia eest teie asemel lorem ipsum lorem ipsum lorem ipsum lorem ipsum."
-                imageSrc="public/hood_dj.jpg"
+                imageSrc="/hood_dj.jpg"
                 customStyles={{
                     minHeight: '60vh',
                     color: 'black',
