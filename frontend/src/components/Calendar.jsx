@@ -2,6 +2,7 @@ import "./Calendar.css";
 import React, { useState } from "react";
 import ReactCalendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import { toast } from 'sonner';
 
 function MyCalendar() {
     const [date, setDate] = useState(new Date());
@@ -12,11 +13,12 @@ function MyCalendar() {
     };
 
     const handleBookDate = () => {
-        if (!bookedDates.includes(date.toDateString())) {
-            setBookedDates([...bookedDates, date.toDateString()]);
-            alert(`Kuupäev ${date.toDateString()} on broneeritud!`);
+        const dateString = date.toDateString();
+        if (!bookedDates.includes(dateString)) {
+            setBookedDates([...bookedDates, dateString]);
+            toast.success(`Kuupäev ${dateString} on broneeritud!`);
         } else {
-            alert(`Kuupäev ${date.toDateString()} on juba broneeritud!`);
+            toast.error(`Kuupäev ${dateString} on juba broneeritud! ❌`);
         }
     };
 
