@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 import './Login.css';
 import backgroundImage from '../assets/backgroundbarimage.jpg';
 
@@ -16,30 +17,35 @@ function Login({ setIsAuthenticated }) {
   const handleLogin = (e) => {
     e.preventDefault();
     console.log('Sisselogimas:', { email, password });
-    if (email && password) {
-      setIsAuthenticated(true); // Update authentication state in App.js
-      navigate('/Kasutaja'); // Navigate to account page
-    } else {
-      alert('Kasutajaandmed on valed');
-    }
+    if (!email || !password) {
+      toast.error('Kasutajaandmed on valed');
+      return;
+    } 
+    setIsAuthenticated(true);
+    toast.success('Sisselogimine õnnestus');
+    navigate('/Kasutaja');
   };
 
   const handleCreate = (e) => {
     e.preventDefault();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     console.log('Registreerimas:', { email, password, phone, firstName, lastName });
-    if (email && password && phone && firstName && lastName) {
-      alert('Registreerimine õnnestus!');
-      setIsCreating(false);
+    if (!email || !password || !phone || !firstName || !lastName) {
+      toast.warning('Palun täitke kõik väljad');
+      return;
+    }
+    if (!emailRegex.test(email)) {
+      toast.error('Palun sisestage kehtiv meiliaadress');
+      return;
+    } 
+    toast.success('Kasutaja loomine õnnestus');
+    setIsCreating(false);
       setIsAuthenticated(true); // Update authentication state in App.js
       navigate('/Kasutaja'); // Navigate to account page
-    } else {
-      alert('Palun täitke kõik väljad!');
-    }
   };
 
   return (
-    <div 
-      className="auth-container"
+    <div className="auth-container"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <div className="auth-form">
@@ -51,11 +57,11 @@ function Login({ setIsAuthenticated }) {
               <div className="form-group">
                 <label>Meiliaadress</label>
                 <input
-                  type="email"
+                //hetkel type on text, mitte email, muidu tuleb broswerist pls use '@'
+                  type="text"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Meiliaadress"
-                  required
                 />
               </div>
               <div className="form-group">
@@ -65,7 +71,6 @@ function Login({ setIsAuthenticated }) {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="Telefoninumber"
-                  required
                 />
               </div>
               <div className="form-group">
@@ -75,7 +80,6 @@ function Login({ setIsAuthenticated }) {
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   placeholder="Eesnimi"
-                  required
                 />
               </div>
               <div className="form-group">
@@ -85,7 +89,6 @@ function Login({ setIsAuthenticated }) {
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   placeholder="Perenimi"
-                  required
                 />
               </div>
               <div className="form-group">
@@ -95,7 +98,6 @@ function Login({ setIsAuthenticated }) {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Parool"
-                  required
                 />
               </div>
               <button type="submit" className="submit-btn">Loo kasutaja</button>
@@ -116,7 +118,6 @@ function Login({ setIsAuthenticated }) {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Meil või telefoninumber"
-                  required
                 />
               </div>
               <div className="form-group">
@@ -126,7 +127,6 @@ function Login({ setIsAuthenticated }) {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Parool"
-                  required
                 />
               </div>
               <button type="submit" className="submit-btn">Logi sisse</button>

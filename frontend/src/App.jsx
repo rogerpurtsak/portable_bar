@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Route, BrowserRouter as Router, Routes, Navigate } from "react-router-dom";
+import { Toaster } from "sonner"
 import Header from "./pages/Header";
 import Home from "./pages/Home";
 import Meist from "./pages/Meist";
@@ -15,6 +16,7 @@ function App() {
   return (
     <Router>
       <div style={{minHeight: 100+"vh"}}>
+      <Toaster richColors /> 
       <Header />
       <Routes>
         {/* Siia saate lisada uusi alamlehti */}
