@@ -1,7 +1,7 @@
 import React from 'react';
 import KasutajaInfo from './KasutajaInfo';
 import KontoSeaded from './KontoSeaded';
-import './kasutaja.css';
+import './Kasutaja.css';
 //kasutaja vaade kaob ära, kui ühtegi muud lehte külastada ja tagasi tulla,
 //ilmselgelt backendi vaja
 const Kasutaja = () => {
