@@ -68,8 +68,44 @@
     transition: background-color 0.3s; /* Lisab sujuva ülemineku */
     margin-top: 10px;
     font-weight: bold;
+    margin-top: 50px; /* Vahe kellaaja sisendist */
 }
 
 .book-button:hover {
     background-color: #C0A897; /* Muudab taustavärvi, kui hiir on nupu kohal */
+}
+
+.time-label {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; /* Lisatud font */
+    color: white; /* Teksti värv */
+    font-size: 16px; /* Teksti suurus */
+    margin-bottom: 5px; /* Ruumi lisamine allapoole */
+    display: block; /* Muudab sildi plokk-elemendiks */
+}
+
+.time-input {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; /* Lisatud font */
+    color: white; /* Teksti värv */
+    background-color: transparent; /* Läbipaistev taust */
+    border: 1px solid white; /* Valge ääris */
+    padding: 5px; /* Sisemised ääred */
+    border-radius: 5px; /* Ümarad nurgad */
+    width: 120px; /* Laius */
+    margin-left: 10px; /* Ruumi lisamine vasakule */
+    outline: none; /* Eemaldab sinise äärise fokuseerimisel */
+    transition: border-color 0.3s ease; /* Sujuv üleminek */
+    margin-bottom: 10px; /* Ruumi lisamine kellaaja sisendile */
+}
+
+.time-input:focus {
+    border-color: #CC7B40; /* Äärise värv, kui sisend on aktiivne */
+}
+
+/* Kellaaja valiku silt */
+.time-label {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; /* Lisatud font */
+    color: white; /* Teksti värv */
+    font-size: 16px; /* Sobiv fondi suurus */
+    margin-top: 10px; /* Ruumi sildi ümber */
+    display: inline-block; /* Õige joondamine */
 }
