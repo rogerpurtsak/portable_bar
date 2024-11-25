@@ -13,42 +13,47 @@
 }
 
 .piltide-galerii {
-  position: relative;
-  height: 600px; /* Kõrgus diagonaalseks paigutuseks */
+  opacity: 0; /* Start fully transparent */
+  animation: fadeIn 2s ease-in-out forwards;
+  display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Kõrgus diagonaalseks paigutuseks */
+    gap: 30px;
+  }
+  
+  @media (max-width: 768px) {
+    .piltide-galerii {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
 }
 
 /* Piltide stiil */
 .pilt-container {
-  position: absolute;
-  width: 300px; /* Piltide laius */
-  height: auto;
+  width: auto;
+    max-width: 500px;
+    height: auto;
+    max-height: fit-content;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease; /* Hoveri animatsioon */
+  margin: 0 auto;
 }
 
 .pilt-container:hover {
   transform: scale(1.05); /* Suurendab pilti veidi hoveri ajal */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
 }
 
-/* Diagonaalne paigutus */
-.pilt-container:nth-child(1) {
-  top: 0;
-  left: 10%;
+@media (min-width: 768px) {
+  .pilt-container:nth-child(odd) {
+    grid-column: 1;
+    /* Place odd items in the first column */
+    grid-row: auto;
+  }
+.pilt-container:nth-child(even) {
+grid-column: 2;
+margin-top: 150px;
 }
-
-.pilt-container:nth-child(2) {
-  top: 100px;
-  left: 30%;
-}
-
-.pilt-container:nth-child(3) {
-  top: 200px;
-  left: 60%;
-}
-
-.pilt-container:nth-child(4) {
-  top: 300px;
-  left: 80%;
 }
