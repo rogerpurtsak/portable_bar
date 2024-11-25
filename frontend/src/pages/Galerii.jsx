@@ -1,4 +1,5 @@
 import React from 'react';
+import './Galerii.css';
 import ImageTile from '../components/ImageTile';
 
 function Galerii() {
@@ -16,14 +17,14 @@ function Galerii() {
     ];
 
     return (
-        <div className="galerii-page">
+        <div className="galerii-container">
+            <div className="piltide-galerii">
             {images.map((image, index) => (
-                <ImageTile
-                    key={index}
-                    image={image}
-                    reverseOrder={index % 2 !== 0}
-                />
+                <div key={index} className="pilt-container">
+                    <ImageTile image={image} />
+                </div>
             ))}
+            </div>
         </div>
     );
 }
