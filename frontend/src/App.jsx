@@ -9,6 +9,7 @@ import Broneeri from "./pages/Broneeri";
 import Login from "./pages/Login";
 import Kasutaja from "./pages/Kasutaja";
 import Footer from "./components/Footer";
+import FloatingIcon from "./components/FloatingIcon";
 
 function App() {
   //seda hetkel vaja vist
@@ -35,6 +36,11 @@ function App() {
             element={isAuthenticated ? <Kasutaja /> : <Navigate to="/login" />}
           />  
       </Routes>
+      <FloatingIcon
+          src="floatingicon.png"
+          alt="Contact Us"
+          link="mailto:hood@baar.ee"
+        />
 
       </div>
       <Footer/>

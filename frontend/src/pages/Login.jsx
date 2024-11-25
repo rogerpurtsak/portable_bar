@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import './Login.css';
-import backgroundImage from '../assets/backgroundbarimage.jpg';
 
 function Login({ setIsAuthenticated }) {
   const [isCreating, setIsCreating] = useState(false);
@@ -46,7 +45,6 @@ function Login({ setIsAuthenticated }) {
 
   return (
     <div className="auth-container"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <div className="auth-form">
         {isCreating ? (
