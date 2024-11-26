@@ -51,6 +51,7 @@ function MyCalendar() {
                 }}
             />
             <p className="selected-date">Valitud kuupäev: {date.toDateString()}</p>
+            <div className="time-and-button-container"> 
             <label className="time-label">
                 Vali kellaaeg:
                 <input
@@ -63,6 +64,7 @@ function MyCalendar() {
             <button className="book-button" onClick={handleBookSlot}>
                 Broneeri aeg
             </button>
+            </div> 
         </div>
     );
 }

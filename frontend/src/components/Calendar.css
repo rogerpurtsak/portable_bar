@@ -109,3 +109,10 @@
     margin-top: 10px; /* Ruumi sildi ümber */
     display: inline-block; /* Õige joondamine */
 }
+
+.time-and-button-container {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    margin-top: 10px;
+}
