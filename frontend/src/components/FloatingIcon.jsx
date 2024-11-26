@@ -1,5 +1,5 @@
 import React from 'react';
-import './FloatingIcon.css';
+import './floatingicon.css';
 
 const FloatingIcon = ({ src, alt, link }) => {
   return (
