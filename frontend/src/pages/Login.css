@@ -3,7 +3,7 @@
     justify-content: flex-end;
     align-items: center;
     min-height: 100vh;
-    background-image: url(backgroundbarimage.jpg);
+    background-image: url('../backgroundbarimage.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

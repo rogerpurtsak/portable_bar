@@ -1,6 +1,6 @@
 .home-body {
     background-color: #483C32; /*juhul kui see baby tootama ei peaks*/
-    background-image: url(hood_index.jpg);
+    background-image: url('../public/hood_index.jpg');
     background-size: cover; 
     background-repeat: no-repeat;
     background-position: center;
