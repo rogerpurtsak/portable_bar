@@ -4,6 +4,9 @@ import { auth, db } from "../assets/firebase.js";
 import { useNavigate } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import "./Kasutaja.css";
+import KasutajaInfo from './KasutajaInfo';
+import KontoSeaded from './KontoSeaded';
+
 
 const Kasutaja = () => {
   const [user, setUser] = useState(null); // Authenticated user
@@ -44,18 +47,8 @@ const Kasutaja = () => {
         <h1>Minu profiil</h1>
         {userData ? (
           <>
-            <p>
-              <strong>Eesnimi:</strong> {userData.firstName}
-            </p>
-            <p>
-              <strong>Perenimi:</strong> {userData.lastName}
-            </p>
-            <p>
-              <strong>E-mail:</strong> {user.email}
-            </p>
-            <p>
-              <strong>Telefon:</strong> {userData.phone}
-            </p>
+            <KasutajaInfo user={user} userData={userData} />
+            <KontoSeaded />
           </>
         ) : (
           <p>Laadin kasutaja andmeid...</p>

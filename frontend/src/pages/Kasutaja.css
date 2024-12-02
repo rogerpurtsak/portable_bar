@@ -131,6 +131,7 @@
 
 .user-input {
     padding: 8px;
+    margin-top: 10px;
     font-size: 1rem;
     width: 100%;
     box-sizing: border-box;

@@ -67,8 +67,9 @@
     cursor: pointer; /* Muudab kursorit */
     transition: background-color 0.3s; /* Lisab sujuva ülemineku */
     margin-top: 10px;
+    margin-left: auto;
     font-weight: bold;
-    margin-top: 50px; /* Vahe kellaaja sisendist */
+
 }
 
 .book-button:hover {
