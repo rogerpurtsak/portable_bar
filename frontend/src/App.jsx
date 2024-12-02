@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Route, BrowserRouter as Router, Routes, Navigate } from "react-router-dom";
-import { Toaster } from "sonner"
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { Toaster } from "sonner";
 import Header from "./pages/Header";
 import Home from "./pages/Home";
 import Meist from "./pages/Meist";
@@ -12,40 +12,28 @@ import Footer from "./components/Footer";
 import FloatingIcon from "./components/FloatingIcon";
 
 function App() {
-  //seda hetkel vaja vist
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   return (
     <Router>
-      <div style={{minHeight: 100+"vh"}}>
-      <Toaster richColors /> 
-      <Header />
-      <Routes>
-        {/* Siia saate lisada uusi alamlehti */}
-        <Route path="/" element={<Home />} />
-        <Route path="/meist" element={<Meist />} />
-        <Route path="/galerii" element={<Galerii />} />
-        <Route path="/broneeri" element={<Broneeri />} />
-
-        <Route
-            path="/login"
-            element={<Login setIsAuthenticated={setIsAuthenticated} />}
-          />
-          
-        <Route
+      <div style={{ minHeight: "100vh" }}>
+        <Toaster richColors />
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/meist" element={<Meist />} />
+          <Route path="/galerii" element={<Galerii />} />
+          <Route path="/broneeri" element={<Broneeri />} />
+          <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+          <Route
             path="/Kasutaja"
             element={isAuthenticated ? <Kasutaja /> : <Navigate to="/login" />}
-          />  
-      </Routes>
-      <FloatingIcon
-          src="floatingicon.png"
-          alt="Contact Us"
-          link="mailto:hood@baar.ee"
-        />
-
+          />
+        </Routes>
+        <FloatingIcon src="floatingicon.png" alt="Contact Us" link="mailto:hood@baar.ee" />
       </div>
-      <Footer/>
+      <Footer />
     </Router>
-
   );
 }
 

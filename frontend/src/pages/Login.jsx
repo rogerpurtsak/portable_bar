@@ -1,51 +1,76 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'sonner';
-import './Login.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import { createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "../assets/firebase.js";
+import { setDoc, doc } from "firebase/firestore";
+import "./Login.css";
 
 function Login({ setIsAuthenticated }) {
   const [isCreating, setIsCreating] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [phone, setPhone] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const navigate = useNavigate();
 
-  const navigate = useNavigate(); // Initialize useNavigate
-
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log('Sisselogimas:', { email, password });
-    if (!email || !password) {
-      toast.error('Kasutajaandmed on valed');
-      return;
-    } 
-    setIsAuthenticated(true);
-    toast.success('Sisselogimine õnnestus');
-    navigate('/Kasutaja');
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      if (user.emailVerified) {
+        setIsAuthenticated(true);
+        toast.success("Sisselogimine õnnestus!");
+        navigate("/Kasutaja");
+      } else {
+        toast.error("Palun kinnitage oma e-mail enne sisselogimist!");
+      }
+    } catch (error) {
+      toast.error("Sisselogimine ebaõnnestus: " + error.message);
+    }
   };
 
-  const handleCreate = (e) => {
+  const handleCreate = async (e) => {
     e.preventDefault();
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    console.log('Registreerimas:', { email, password, phone, firstName, lastName });
-    if (!email || !password || !phone || !firstName || !lastName) {
-      toast.warning('Palun täitke kõik väljad');
-      return;
+    try {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email || !password || !phone || !firstName || !lastName) {
+        toast.warning("Palun täitke kõik väljad!");
+        return;
+      }
+      if (!emailRegex.test(email)) {
+        toast.error("Palun sisestage kehtiv meiliaadress!");
+        return;
+      }
+  
+      // Register user in Firebase Authentication
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+  
+      // Send email verification
+      await sendEmailVerification(user);
+  
+      // Save user data to Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        firstName,
+        lastName,
+        email,
+        phone,
+      });
+  
+      toast.success("Registreerimine õnnestus! Palun kontrollige oma e-maili kinnitamiseks.");
+      setIsCreating(false); // Switch back to login form
+    } catch (error) {
+      console.error("Registreerimine ebaõnnestus:", error.message);
+      toast.error("Registreerimine ebaõnnestus: " + error.message);
     }
-    if (!emailRegex.test(email)) {
-      toast.error('Palun sisestage kehtiv meiliaadress');
-      return;
-    } 
-    toast.success('Kasutaja loomine õnnestus');
-    setIsCreating(false);
-      setIsAuthenticated(true); // Update authentication state in App.js
-      navigate('/Kasutaja'); // Navigate to account page
   };
 
   return (
-    <div className="auth-container"
-    >
+    <div className="auth-container">
       <div className="auth-form">
         {isCreating ? (
           <>
@@ -55,7 +80,6 @@ function Login({ setIsAuthenticated }) {
               <div className="form-group">
                 <label>Meiliaadress</label>
                 <input
-                //hetkel type on text, mitte email, muidu tuleb broswerist pls use '@'
                   type="text"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -98,7 +122,9 @@ function Login({ setIsAuthenticated }) {
                   placeholder="Parool"
                 />
               </div>
-              <button type="submit" className="submit-btn">Loo kasutaja</button>
+              <button type="submit" className="submit-btn">
+                Loo kasutaja
+              </button>
             </form>
             <p onClick={() => setIsCreating(false)} className="toggle-link">
               Kas sul on juba konto? Logi sisse
@@ -127,7 +153,9 @@ function Login({ setIsAuthenticated }) {
                   placeholder="Parool"
                 />
               </div>
-              <button type="submit" className="submit-btn">Logi sisse</button>
+              <button type="submit" className="submit-btn">
+                Logi sisse
+              </button>
             </form>
             <p onClick={() => setIsCreating(true)} className="toggle-link">
               Kas sul pole veel kontot? Loo kasutaja
