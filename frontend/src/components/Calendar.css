@@ -95,6 +95,8 @@
     outline: none; /* Eemaldab sinise äärise fokuseerimisel */
     transition: border-color 0.3s ease; /* Sujuv üleminek */
     margin-bottom: 10px; /* Ruumi lisamine kellaaja sisendile */
+    min-width: 120px; /* 2 dets lisatud kood */
+
 }
 
 .time-input:focus {
@@ -108,11 +110,27 @@
     font-size: 16px; /* Sobiv fondi suurus */
     margin-top: 10px; /* Ruumi sildi ümber */
     display: inline-block; /* Õige joondamine */
+    display: flex; /* 2dets lisatud rida*/
+    flex-direction: column; /* 2 dets lisatud rida */
 }
 
 .time-and-button-container {
     display: flex;
-    gap: 40px;
+    gap: 15px; /* 2dets lisatud rida */
     align-items: center;
     margin-top: 10px;
+    flex-wrap: wrap;/* 2dets lisatud rida */
 }
+
+@media (max-width: 768px) {
+    .time-and-button-container {
+        flex-direction: column; /* 2dets lisatud rida  */
+        align-items: flex-start; /* 2dets lisatud rida  */
+    }
+
+    .book-button {
+        width: 100%; /* 2dets lisatud rida  */
+        text-align: center; /* 2dets lisatud rida  */
+    }
+}
+
