@@ -3,18 +3,12 @@ import { auth, db } from "../assets/firebase.js";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { updateUserProfile } from "../assets/firebaseUtils.js";
-import { updatePassword } from "firebase/auth";
 import { toast } from "sonner";
 
 const KasutajaInfo = () => {
   const [user, setUser] = useState(null);
   const [editing, setEditing] = useState(false);
-  const [newPassword, setNewPassword] = useState("");
-  const [isChangingPassword, setIsChangingPassword] = useState(false);
-
-  const togglePasswordChange = () => {setIsChangingPassword(!isChangingPassword);
-    setNewPassword("");
-  };
+  
 
   const toggleEdit = () => setEditing(!editing);
 
@@ -71,21 +65,6 @@ const KasutajaInfo = () => {
     }
   };
 
-  const handlePasswordChange = async () => {
-    try {
-      if (newPassword.trim() === "") {
-        toast.error("Palun sisesta uus parool!");
-        return;
-      }
-
-      await updatePassword(auth.currentUser, newPassword); // Update password in Firebase
-      toast.success("Parool uuendatud!");
-      setNewPassword(""); // Clear the password input
-    } catch (error) {
-      console.error("Tekkis probleem parooli uuendamisel:", error.message);
-      toast.error("Parooli uuendamine ebaõnnestus: " + error.message);
-    }
-  };
 
   return (
     <div className="kasutaja-info">
@@ -136,35 +115,12 @@ const KasutajaInfo = () => {
               </button>
             </>
           )}
-  
-  <div className="password-change">
-  {!isChangingPassword ? (
-    <button onClick={togglePasswordChange} className="user-button">
-      Muuda parooli
-    </button>
-  ) : (
-    <>
-      <input
-        type="password"
-        placeholder="Uus parool"
-        value={newPassword}
-        onChange={(e) => setNewPassword(e.target.value)}
-        className="user-input"
-      />
-      <button onClick={handlePasswordChange} className="user-button">
-        Salvesta parool
-      </button>
-      <button onClick={togglePasswordChange} className="user-button">
-        Tühista
-      </button>
-    </>
-  )}
-</div>
-        </>
+  </>
       ) : (
         <p>Kasutaja pole sisse logitud</p>
       )}
     </div>
+
   );
 };
 

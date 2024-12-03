@@ -143,3 +143,13 @@
 .user-input {
     line-height: 1.3;
 }
+
+.password-change {
+    margin-bottom: 20px;
+  }
+  
+  .user-input {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+  }
