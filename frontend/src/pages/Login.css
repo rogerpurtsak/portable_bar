@@ -89,7 +89,13 @@
     border-color: #444;
 }
 
-.submit-btn {
+.submit-btn,
+.google-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
     width: 100%;
     padding: 14px;
     background-color: #9a643e;
@@ -101,7 +107,8 @@
     transition: background-color 0.3s, color 0.3s;
 }
 
-.submit-btn:hover {
+.submit-btn:hover,
+.google-btn:hover {
     background-color: #2d251f;
         color: #B79286;
     }
@@ -120,9 +127,28 @@
         color: #ac2a9b;
     }
     
-    .submit-btn:active {
+    .submit-btn:active,
+    .google-btn:active {
         transform: scale(0.98);
         /* Slightly reduces the button size */
         box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
         /* Reduces the shadow */
+}
+
+.google-btn {
+  gap: 10px; /* Space between logo and text */
+  margin-top: 10px; /* Adds space between buttons */
+  }
+  
+  
+  .google-logo {
+    position: absolute;
+    left: 16px;
+    width: 30px;
+    height: 30px;
+    transition: filter 1s ease;
+  }
+
+.google-btn:hover .google-logo {
+    filter: drop-shadow(0 0 8px rgb(255, 255, 255, 0.8));
 }
