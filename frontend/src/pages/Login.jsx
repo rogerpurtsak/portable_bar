@@ -5,6 +5,11 @@ import { createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailA
 import { auth, db } from "../assets/firebase.js";
 import { setDoc, doc } from "firebase/firestore";
 import "./Login.css";
+import { signInWithGoogle } from "../assets/authUtils";
+import GoogleLogo from "../assets/google-logo.svg";
+import { createAccountWithGoogle } from "../assets/firebaseUtils";
+
+
 
 function Login({ setIsAuthenticated }) {
   const [isCreating, setIsCreating] = useState(false);
@@ -14,6 +19,33 @@ function Login({ setIsAuthenticated }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const navigate = useNavigate();
+
+  const handleCreateWithGoogle = async () => {
+    try {
+      const user = await createAccountWithGoogle();
+      console.log("Account created with Google:", user);
+      toast.success(`Tere tulemast, ${user.displayName}!`);
+      setIsAuthenticated(true);
+      navigate("/Kasutaja");
+    } catch (error) {
+      console.error("Error creating account with Google:", error.message);
+      toast.error("Konto loomine ebaõnnestus: " + error.message);
+    }
+  };
+  
+
+  const handleGoogleLogin = async () => {
+    try {
+      const user = await signInWithGoogle();
+      console.log("Google kasutaja sisselogitud:", user);
+      setIsAuthenticated(true);
+      toast.success("Sisselogimine Google'iga õnnestus!");
+      navigate("/Kasutaja");
+    } catch (error) {
+      toast.error("Sisselogimine ebaõnnestus: " + error.message);
+    }
+  };
+  
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -125,6 +157,14 @@ function Login({ setIsAuthenticated }) {
               <button type="submit" className="submit-btn">
                 Loo kasutaja
               </button>
+              <button
+      type="button"
+      className="google-btn"
+      onClick={handleCreateWithGoogle}
+    >
+      <img src={GoogleLogo} alt="Google Logo" className="google-logo" />
+      Loo konto Google'iga
+    </button>
             </form>
             <p onClick={() => setIsCreating(false)} className="toggle-link">
               Kas sul on juba konto? Logi sisse
@@ -155,6 +195,14 @@ function Login({ setIsAuthenticated }) {
               </div>
               <button type="submit" className="submit-btn">
                 Logi sisse
+              </button>
+              <button
+                type="button"
+                className="google-btn"
+                onClick={handleGoogleLogin}
+              >
+              <img src={GoogleLogo} alt="Google Logo" className="google-logo" />
+                Logi sisse Google'iga
               </button>
             </form>
             <p onClick={() => setIsCreating(true)} className="toggle-link">
