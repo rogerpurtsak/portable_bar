@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { auth, db } from "../assets/firebase.js";
 import { setDoc, doc } from "firebase/firestore";
 import "./Login.css";
@@ -19,6 +19,22 @@ function Login({ setIsAuthenticated }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const navigate = useNavigate();
+
+
+  const handleForgotPassword = async () => {
+  if (!email) {
+    toast.error("Palun sisestage oma meiliaadress!");
+    return;
+  }
+  try {
+    await sendPasswordResetEmail(auth, email);
+    toast.success("Parooli lähtestamise link saadeti teie meiliaadressile.");
+  } catch (error) {
+    console.error("Parooli lähtestamise viga:", error.message);
+    toast.error("Parooli lähtestamine ebaõnnestus: " + error.message);
+  }
+  };
+
 
   const handleCreateWithGoogle = async () => {
     try {
@@ -185,14 +201,25 @@ function Login({ setIsAuthenticated }) {
                 />
               </div>
               <div className="form-group">
-                <label>Parool</label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Parool"
-                />
-              </div>
+  <div className="password-label-container">
+    <label>Parool</label>
+    <span
+      className="help-icon"
+      onClick={handleForgotPassword}
+      title="Unustasid parooli?"
+    >
+      ?
+    </span>
+  </div>
+  <input
+    type="password"
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+    placeholder="Parool"
+  />
+</div>
+
+
               <button type="submit" className="submit-btn">
                 Logi sisse
               </button>
