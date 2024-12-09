@@ -2,31 +2,36 @@ import "./Calendar.css";
 import React, { useState } from "react";
 import ReactCalendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import { toast } from 'sonner';
+import { toast } from "sonner";
 
-function MyCalendar() {
+function MyCalendar({ onDateTimeSelect }) {
     const [date, setDate] = useState(new Date());
-    const [time, setTime] = useState(""); /* Uus rida kellaja jaoks */
-    const [bookedSlots, setBookedSlots] = useState([]); /* Muuda bookedDates -> bookedSlots */
+    const [time, setTime] = useState(""); // Kellaaeg
+    const [bookedSlots, setBookedSlots] = useState([]); // Broneeritud ajad
 
     const handleDateChange = (newDate) => {
         setDate(newDate);
+        if (time) {
+            onDateTimeSelect(newDate, time); // Edasta kuupäev ja kellaaeg vanemkomponendile
+        }
     };
 
     const handleTimeChange = (event) => {
-        setTime(event.target.value); // Uus rida -> uuendab kellaaja väärtust
+        const selectedTime = event.target.value;
+        setTime(selectedTime);
+        onDateTimeSelect(date, selectedTime); // Edasta kuupäev ja kellaaeg vanemkomponendile
     };
 
     const handleBookSlot = () => {
         const dateString = date.toDateString();
         const slot = `${dateString} ${time}`; // Kuupäeva ja kellaaja kombinatsioon
 
-        if (!time) { // Kontrollime, kas kellaaeg on valitud
+        if (!time) {
             toast.error("Palun vali kellaaeg! ⏰");
             return;
         }
 
-        if (!bookedSlots.includes(slot)) { // Kontrollime, kas kuupäeva ja kellaaja kombinatsioon on juba broneeritud
+        if (!bookedSlots.includes(slot)) {
             setBookedSlots([...bookedSlots, slot]);
             toast.success(`Kuupäev ${dateString}, kell ${time} on broneeritud!`);
         } else {
@@ -41,7 +46,7 @@ function MyCalendar() {
                 value={date}
                 tileClassName={({ date }) => {
                     const dateString = date.toDateString();
-                    if (bookedSlots.some(slot => slot.startsWith(dateString))) {
+                    if (bookedSlots.some((slot) => slot.startsWith(dateString))) {
                         return "booked"; // Broneeritud päevade klass
                     }
                     if (dateString === new Date().toDateString()) {
@@ -51,20 +56,20 @@ function MyCalendar() {
                 }}
             />
             <p className="selected-date">Valitud kuupäev: {date.toDateString()}</p>
-            <div className="time-and-button-container"> 
-            <label className="time-label">
-                Vali kellaaeg:
-                <input
-                    type="time"
-                    value={time}
-                    onChange={handleTimeChange} // Lisa kellaaja muutmise funktsioon
-                    className="time-input"
-                />
-            </label>
-            <button className="book-button" onClick={handleBookSlot}>
-                Broneeri aeg
-            </button>
-            </div> 
+            <div className="time-and-button-container">
+                <label className="time-label">
+                    Vali kellaaeg:
+                    <input
+                        type="time"
+                        value={time}
+                        onChange={handleTimeChange}
+                        className="time-input"
+                    />
+                </label>
+                <button className="book-button" onClick={handleBookSlot}>
+                    Broneeri aeg
+                </button>
+            </div>
         </div>
     );
 }
