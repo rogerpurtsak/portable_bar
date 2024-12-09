@@ -13,6 +13,22 @@ function Broneeri() {
                         <input type="text" placeholder="Ees- ja perekonnanimi" />
                         <input type="email" placeholder="Email" />
                         <input type="text" placeholder="Põhijoogid, mida soovite" />
+                        <div className="alcohol-people">
+                            <label htmlFor="alcohol-people-input">
+                            Mitu inimest?:
+                                </label>
+                                <input 
+                                    type="number" 
+                                    id="alcohol-people-input" 
+                                    placeholder="Sisesta inimeste arv" 
+                                    />
+                                    </div>
+                        <div className="dj-option">
+                            <label className="styled-checkbox">
+                                <input type="checkbox" id="dj-request" />
+                                <span>Kas DJ soovi on?</span>
+                                </label>
+                        </div>
                         <button type="submit">Broneeri</button>
                     </form>
                 </div>

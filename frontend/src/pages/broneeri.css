@@ -161,3 +161,86 @@
         width: 70%; /* Ensure consistency */
     }
 }
+
+/* Checkbox stiilimine */
+.styled-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Ruumi checkboxi ja teksti vahel */
+}
+
+.styled-checkbox input[type="checkbox"] {
+    appearance: none; /* Peida vaikimisi checkbox */
+    background-color: #CC7B40; /* Vaikimisi oranž taust */
+    border: 1px solid #CC7B40; /* Ääris */
+    width: 20px; /* Checkboxi laius */
+    height: 20px; /* Checkboxi kõrgus */
+    border-radius: 5px; /* Ümarad nurgad */
+    cursor: pointer; /* Hiirekursor */
+    position: relative;
+    display: inline-block;
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Sujuv üleminek */
+}
+
+/* Märgitud checkbox */
+.styled-checkbox input[type="checkbox"]:checked {
+    background-color: #556B2F; /* Märgitud oleku värv - roheline */
+    border-color: #556B2F; /* Märgitud oleku ääris */
+}
+
+.styled-checkbox input[type="checkbox"]:checked::after {
+    content: ''; /* Linnukese lisamine */
+    position: absolute;
+    top: 4px; /* Linnukese paigutus */
+    left: 7px;
+    width: 5px;
+    height: 10px;
+    border: solid white; /* Linnukese värv */
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg); /* Linnukese kuju */
+}
+
+/* Teksti stiil checkboxi kõrval */
+.styled-checkbox span {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    color: #483C32;
+    font-weight: bold;
+}
+
+/* Sektsiooni paigutus */
+.alcohol-people {
+    display: flex;
+    flex-direction: column; /* Aseta silt ja tekstikast vertikaalselt */
+    gap: 5px; /* Ruumi lisamine sildi ja sisendi vahele */
+    margin-top: 15px; /* Ruumi lisamine sektsiooni kohal */
+}
+
+/* Silt */
+.alcohol-people label {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    color: #483C32;
+    font-weight: bold;
+}
+
+/* Tekstikast */
+.alcohol-people input {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    width: 100%; /* Võtab kogu saadaval oleva laiuse */
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Ümarad nurgad */
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+/* Fookuse efekt */
+.alcohol-people input:focus {
+    border-color: #CC7B40; /* Kui sisend on aktiivne */
+    outline: none; /* Eemaldab sinise joone */
+}
+
+
+
