@@ -23,8 +23,8 @@
 
 .sisu {
     display: flex;
-        flex-direction: column;
-        max-width: 600px;
+    flex-direction: column;
+    max-width: 600px;
     width: 100%;
     padding: 30px;
     background-color: #C0A897;
@@ -32,24 +32,22 @@
     box-shadow: 0 4px 12px #9a643e;
     text-align: left;
 }
-/*pisem*/
+
+/* Responsive styles for smaller screens */
 @media (max-width: 700px) {
     .sisu {
         padding: 20px;
         max-width: 90%;
-        /* peenem */
     }
 
     .sisu h1 {
         font-size: 1.8rem;
         margin-bottom: 1rem;
-        /* tiba väiksem */
     }
 
     .kasutaja-info,
     .konto-seaded {
         padding: 15px;
-        /* less padding */
     }
 
     .user-button,
@@ -58,7 +56,6 @@
         padding: 8px 16px;
     }
 }
-
 
 .sisu h1 {
     font-size: 2rem;
@@ -136,7 +133,7 @@
     width: 100%;
     box-sizing: border-box;
     border-radius: 8px;
-        border: 1px solid #9a643e;
+    border: 1px solid #9a643e;
 }
 
 .kasutaja-info p,
@@ -146,10 +143,10 @@
 
 .password-change {
     margin-bottom: 10px;
-  }
-  
-  .user-input {
+}
+
+.user-input {
     display: block;
     margin-bottom: 10px;
     width: 100%;
-  }
+}

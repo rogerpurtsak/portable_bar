@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-function Header() {
+function Header({ isAuthenticated }) {
   const [isLinksVisible, setIsLinksVisible] = useState(false);
 
   const toggleLinks = () => {
@@ -21,7 +21,11 @@ function Header() {
         <Link to="/meist" className="nav-link">Meist</Link>
         <Link to="/galerii" className="nav-link">Galerii</Link>
         <Link to="/broneeri" className="nav-link">Broneeri</Link>
-        <Link to="/login" className="nav-link">Profiil</Link>
+        {isAuthenticated ? (
+          <Link to="/Kasutaja" className="nav-link">Profiil</Link>
+        ) : (
+          <Link to="/login" className="nav-link">Profiil</Link>
+        )}
       </div>
     </div>
   );

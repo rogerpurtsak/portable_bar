@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth, db } from "../assets/firebase.js";
 import { useNavigate } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import "./Kasutaja.css";
 import KasutajaInfo from './KasutajaInfo';
 import KontoSeaded from './KontoSeaded';
-
+import { toast } from "sonner";
 
 const Kasutaja = () => {
-  const [user, setUser] = useState(null); // Authenticated user
-  const [userData, setUserData] = useState(null); // User's Firestore data
+  const [user, setUser] = useState(null);
+  const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const Kasutaja = () => {
         setUser(currentUser);
 
         try {
-          // Fetch user details from Firestore
+          
           const userDoc = await getDoc(doc(db, "users", currentUser.uid));
           if (userDoc.exists()) {
             setUserData(userDoc.data());
@@ -30,15 +30,27 @@ const Kasutaja = () => {
           console.error("Error fetching Firestore data:", error.message);
         }
       } else {
-        navigate("/login"); // Redirect to login if not authenticated
+        navigate("/login");
       }
     });
 
     return () => unsubscribe();
   }, [navigate]);
 
+  
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      localStorage.removeItem("authToken");
+      toast.success("Oled välja logitud!");
+      navigate("/login");
+    } catch (error) {
+      toast.error("Väljalogimine ebaõnnestus: " + error.message);
+    }
+  };
+
   if (!user) {
-    return null; // Prevent rendering if user is not authenticated
+    return null;
   }
 
   return (
