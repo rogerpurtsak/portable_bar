@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from "firebase/auth";
 import { auth, db } from "../assets/firebase.js";
 import { setDoc, doc } from "firebase/firestore";
 import "./Login.css";
 import { signInWithGoogle } from "../assets/authUtils";
 import GoogleLogo from "../assets/google-logo.svg";
 import { createAccountWithGoogle } from "../assets/firebaseUtils";
-
-
+import Spinner from "../components/Spinner.jsx";
 
 function Login({ setIsAuthenticated }) {
   const [isCreating, setIsCreating] = useState(false);
@@ -18,23 +22,22 @@ function Login({ setIsAuthenticated }) {
   const [phone, setPhone] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-
   const handleForgotPassword = async () => {
-  if (!email) {
-    toast.error("Palun sisestage oma meiliaadress!");
-    return;
-  }
-  try {
-    await sendPasswordResetEmail(auth, email);
-    toast.success("Parooli lähtestamise link saadeti teie meiliaadressile.");
-  } catch (error) {
-    console.error("Parooli lähtestamise viga:", error.message);
-    toast.error("Parooli lähtestamine ebaõnnestus: " + error.message);
-  }
+    if (!email) {
+      toast.error("Palun sisestage oma meiliaadress!");
+      return;
+    }
+    try {
+      await sendPasswordResetEmail(auth, email);
+      toast.success("Parooli lähtestamise link saadeti teie meiliaadressile.");
+    } catch (error) {
+      console.error("Parooli lähtestamise viga:", error.message);
+      toast.error("Parooli lähtestamine ebaõnnestus: " + error.message);
+    }
   };
-
 
   const handleCreateWithGoogle = async () => {
     try {
@@ -48,7 +51,6 @@ function Login({ setIsAuthenticated }) {
       toast.error("Konto loomine ebaõnnestus: " + error.message);
     }
   };
-  
 
   const handleGoogleLogin = async () => {
     try {
@@ -61,16 +63,17 @@ function Login({ setIsAuthenticated }) {
       toast.error("Sisselogimine ebaõnnestus: " + error.message);
     }
   };
-  
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
       if (user.emailVerified) {
         setIsAuthenticated(true);
+        localStorage.setItem("authToken", user.uid);
         toast.success("Sisselogimine õnnestus!");
         navigate("/Kasutaja");
       } else {
@@ -78,6 +81,8 @@ function Login({ setIsAuthenticated }) {
       }
     } catch (error) {
       toast.error("Sisselogimine ebaõnnestus: " + error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -93,24 +98,21 @@ function Login({ setIsAuthenticated }) {
         toast.error("Palun sisestage kehtiv meiliaadress!");
         return;
       }
-  
-      // Register user in Firebase Authentication
+
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-  
-      // Send email verification
+
       await sendEmailVerification(user);
-  
-      // Save user data to Firestore
+
       await setDoc(doc(db, "users", user.uid), {
         firstName,
         lastName,
         email,
         phone,
       });
-  
+
       toast.success("Registreerimine õnnestus! Palun kontrollige oma e-maili kinnitamiseks.");
-      setIsCreating(false); // Switch back to login form
+      setIsCreating(false);
     } catch (error) {
       console.error("Registreerimine ebaõnnestus:", error.message);
       toast.error("Registreerimine ebaõnnestus: " + error.message);
@@ -120,7 +122,9 @@ function Login({ setIsAuthenticated }) {
   return (
     <div className="auth-container">
       <div className="auth-form">
-        {isCreating ? (
+        {loading ? (
+          <Spinner />
+        ) : isCreating ? (
           <>
             <h1>Loo kasutaja</h1>
             <p>Tere tulemast!</p>
@@ -174,13 +178,13 @@ function Login({ setIsAuthenticated }) {
                 Loo kasutaja
               </button>
               <button
-      type="button"
-      className="google-btn"
-      onClick={handleCreateWithGoogle}
-    >
-      <img src={GoogleLogo} alt="Google Logo" className="google-logo" />
-      Loo konto Google'iga
-    </button>
+                type="button"
+                className="google-btn"
+                onClick={handleCreateWithGoogle}
+              >
+                <img src={GoogleLogo} alt="Google Logo" className="google-logo" />
+                Loo konto Google'iga
+              </button>
             </form>
             <p onClick={() => setIsCreating(false)} className="toggle-link">
               Kas sul on juba konto? Logi sisse
@@ -201,25 +205,23 @@ function Login({ setIsAuthenticated }) {
                 />
               </div>
               <div className="form-group">
-  <div className="password-label-container">
-    <label>Parool</label>
-    <span
-      className="help-icon"
-      onClick={handleForgotPassword}
-      title="Unustasid parooli?"
-    >
-      ?
-    </span>
-  </div>
-  <input
-    type="password"
-    value={password}
-    onChange={(e) => setPassword(e.target.value)}
-    placeholder="Parool"
-  />
-</div>
-
-
+                <div className="password-label-container">
+                  <label>Parool</label>
+                  <span
+                    className="help-icon"
+                    onClick={handleForgotPassword}
+                    title="Unustasid parooli?"
+                  >
+                    ?
+                  </span>
+                </div>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Parool"
+                />
+              </div>
               <button type="submit" className="submit-btn">
                 Logi sisse
               </button>
@@ -228,7 +230,7 @@ function Login({ setIsAuthenticated }) {
                 className="google-btn"
                 onClick={handleGoogleLogin}
               >
-              <img src={GoogleLogo} alt="Google Logo" className="google-logo" />
+                <img src={GoogleLogo} alt="Google Logo" className="google-logo" />
                 Logi sisse Google'iga
               </button>
             </form>
