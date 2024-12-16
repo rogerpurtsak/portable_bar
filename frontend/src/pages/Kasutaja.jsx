@@ -24,9 +24,12 @@ const Kasutaja = () => {
           if (userDoc.exists()) {
             setUserData(userDoc.data());
           } else {
+            await signOut(auth);
+          toast.error("No user found with this Google account.");
             console.error("No Firestore data found for user.");
           }
         } catch (error) {
+          toast.error("Failed to fetch user data.");
           console.error("Error fetching Firestore data:", error.message);
         }
       } else {

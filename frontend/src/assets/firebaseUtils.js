@@ -1,10 +1,10 @@
-import { doc, setDoc, updateDoc } from "firebase/firestore";
-import { auth, db } from "./firebase"; // Adjust path to your firebase config
+import { doc, setDoc, updateDoc, getDoc } from "firebase/firestore";
+import { auth, db } from "./firebase";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 export const updateUserProfile = async (uid, updatedData) => {
   try {
-    const userDocRef = doc(db, "users", uid); // Reference to the user's document
+    const userDocRef = doc(db, "users", uid);
     await updateDoc(userDocRef, updatedData);
     console.log("User profile updated successfully!");
   } catch (error) {
@@ -21,20 +21,20 @@ export const createAccountWithGoogle = async () => {
     const user = result.user;
 
     const nameParts = user.displayName ? user.displayName.split(" ") : [];
-    const firstName = nameParts[0] || ""; // Use the first part as firstName
-    const lastName = nameParts.slice(1).join(" ") || ""; // Use the rest as lastName
+    const firstName = nameParts[0] || "";
+    const lastName = nameParts.slice(1).join(" ") || "";
 
-    // Check or create the user document in Firestore
+
     const userDocRef = doc(db, "users", user.uid);
     const userDoc = await getDoc(userDocRef);
 
     if (!userDoc.exists()) {
-      // Save user data to Firestore
+
       await setDoc(userDocRef, {
         firstName,
         lastName,
         email: user.email,
-        phone: "", // Leave phone empty for Google sign-ups
+        phone: "",
         createdAt: new Date().toISOString(),
       });
     }

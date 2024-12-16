@@ -150,3 +150,76 @@
     margin-bottom: 10px;
     width: 100%;
 }
+
+.modal {
+    position: fixed; /* Paigutab modaalakna kogu akna ulatuses */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5); /* Läbipaistev must taust */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Tõstab modaalakna teistest elementidest ettepoole */
+  }
+  
+  .modal-content {
+    color: #fff;
+    background: #483C32; /* Valge taust modaalakna sisule */
+    padding: 20px;
+    border-radius: 8px; /* Kergelt ümarad servad */
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Õrn vari */
+    max-width: 400px;
+    width: 90%; /* Kohandub väiksemate ekraanidega */
+  }
+  
+  .modal-content h3 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .modal-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+  }
+  
+  .modal-buttons button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .modal-buttons .settings-button.delete {
+    background: #cc0000; /* Punane nupp */
+    color: #fff;
+  }
+  
+  .modal-buttons .settings-button.delete:hover {
+    background: #990000; /* Tumepunane hover-efekt */
+  }
+  
+  .modal-buttons .settings-button {
+    background: #ccc; /* Hall nupp */
+    color: #333;
+  }
+  
+  .modal-buttons .settings-button:hover {
+    background: #bbb; /* Tumedam hall hover-efekt */
+  }
+  
+  input.user-input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
