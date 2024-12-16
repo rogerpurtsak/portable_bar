@@ -2,19 +2,22 @@ import React, { useState } from "react";
 import "./broneeri.css";
 import MyCalendar from "../components/Calendar";
 import { db } from "../assets/firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
+import { toast } from "sonner";
 
 function Broneeri() {
+    // Vormide algolek
     const [formData, setFormData] = useState({
         name: "",
         email: "",
         drinks: "",
         people: "",
         dj: false,
-        date: "", // Lisatud kuupäeva väli
-        time: "", // Lisatud kellaaja väli
+        date: "", // Kuupäeva väli
+        time: "", // Kellaaja väli
     });
 
+    // Vormiväljade muutmine
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         setFormData({
@@ -23,23 +26,59 @@ function Broneeri() {
         });
     };
 
+    // Kuupäeva ja kellaaja muutmine
     const handleDateTimeSelect = (selectedDate, selectedTime) => {
-        setFormData({
-            ...formData,
-            date: selectedDate.toDateString(), // Kuupäev stringina
-            time: selectedTime, // Kellaaeg
-        });
+        setFormData((prevData) => ({
+            ...prevData,
+            date: selectedDate.toDateString(),
+            time: selectedTime,
+        }));
+        console.log("Uuendatud kuupäev ja kellaaeg:", selectedDate.toDateString(), selectedTime);
     };
 
+    // Vormide esitamine ja Firestore'i salvestamine
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Kontrollime, kas kõik väljad on täidetud
+        if (!formData.date || !formData.time) {
+            alert("Palun vali kuupäev ja kellaaeg!");
+            return;
+        }
+
         try {
-            await addDoc(collection(db, "broneeringud"), formData);
-            alert("Broneering lisatud!");
+            // Kontrollime, kas sama kuupäev ja kellaaeg on juba broneeritud
+            const broneeringudRef = collection(db, "broneeringud");
+            const q = query(
+                broneeringudRef,
+                where("date", "==", formData.date),
+                where("time", "==", formData.time)
+            );
+
+            const querySnapshot = await getDocs(q);
+
+            if (!querySnapshot.empty) {
+                alert("See aeg on juba broneeritud! Palun vali teine aeg.");
+                return; // Lõpetame funktsiooni töö
+            }
+
+            // Kui aega pole broneeritud, salvestame uue broneeringu
+            await addDoc(broneeringudRef, formData);
+            alert("Broneering on edukalt lisatud!");
+
+            // Vormiväljade tühjendamine
+            setFormData({
+                name: "",
+                email: "",
+                drinks: "",
+                people: "",
+                dj: false,
+                date: "",
+                time: "",
+            });
         } catch (error) {
             console.error("Viga broneeringu lisamisel:", error.message);
-            alert("Midagi läks valesti. Proovi uuesti.");
+            alert("Midagi läks valesti. Kontrolli ühendust või proovige uuesti.");
         }
     };
 

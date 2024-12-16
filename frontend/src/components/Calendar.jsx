@@ -1,41 +1,47 @@
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../assets/firebase";
 import "./Calendar.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactCalendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { toast } from "sonner";
 
 function MyCalendar({ onDateTimeSelect }) {
     const [date, setDate] = useState(new Date());
-    const [time, setTime] = useState(""); // Kellaaeg
-    const [bookedSlots, setBookedSlots] = useState([]); // Broneeritud ajad
+    const [time, setTime] = useState("");
+    const [bookedSlots, setBookedSlots] = useState([]);
+
+    // Fetch booked slots from Firestore
+    useEffect(() => {
+        const fetchBookedSlots = async () => {
+            const querySnapshot = await getDocs(collection(db, "broneeringud"));
+            const slots = querySnapshot.docs.map((doc) => {
+                const data = doc.data();
+                return `${data.date} ${data.time}`;
+            });
+            setBookedSlots(slots);
+        };
+
+        fetchBookedSlots();
+    }, []);
 
     const handleDateChange = (newDate) => {
         setDate(newDate);
         if (time) {
-            onDateTimeSelect(newDate, time); // Edasta kuupäev ja kellaaeg vanemkomponendile
+            onDateTimeSelect(newDate, time);
         }
     };
 
     const handleTimeChange = (event) => {
         const selectedTime = event.target.value;
-        setTime(selectedTime);
-        onDateTimeSelect(date, selectedTime); // Edasta kuupäev ja kellaaeg vanemkomponendile
-    };
-
-    const handleBookSlot = () => {
         const dateString = date.toDateString();
-        const slot = `${dateString} ${time}`; // Kuupäeva ja kellaaja kombinatsioon
+        const slot = `${dateString} ${selectedTime}`;
 
-        if (!time) {
-            toast.error("Palun vali kellaaeg! ⏰");
-            return;
-        }
-
-        if (!bookedSlots.includes(slot)) {
-            setBookedSlots([...bookedSlots, slot]);
-            toast.success(`Kuupäev ${dateString}, kell ${time} on broneeritud!`);
+        if (bookedSlots.includes(slot)) {
+            toast.error(`Aeg ${selectedTime} on juba broneeritud! ❌`);
         } else {
-            toast.error(`Kuupäev ${dateString}, kell ${time} on juba broneeritud! ❌`);
+            setTime(selectedTime);
+            onDateTimeSelect(date, selectedTime);
         }
     };
 
@@ -46,14 +52,23 @@ function MyCalendar({ onDateTimeSelect }) {
                 value={date}
                 tileClassName={({ date }) => {
                     const dateString = date.toDateString();
-                    if (bookedSlots.some((slot) => slot.startsWith(dateString))) {
-                        return "booked"; // Broneeritud päevade klass
+                    const isBooked = bookedSlots.some((slot) => {
+                        // Kontrollime ainult kuupäeva osa, mitte aega
+                        const slotDate = slot.split(" ")[0]; // Võtame ainult esimese osa (kuupäev)
+                        return slotDate === dateString; // Võrdleme kuupäeva täpselt
+                    });
+                
+                    if (isBooked) {
+                        return "booked"; // Rakenda "booked" klass ainult täpsetele päevadele
                     }
+                
                     if (dateString === new Date().toDateString()) {
-                        return "active-day"; // Tänase päeva klass
+                        return "active-day"; // Rakenda aktiivse päeva klass
                     }
-                    return null;
+                
+                    return null; // Kui tingimused ei vasta, klassi ei rakendata
                 }}
+                
             />
             <p className="selected-date">Valitud kuupäev: {date.toDateString()}</p>
             <div className="time-and-button-container">
@@ -66,9 +81,6 @@ function MyCalendar({ onDateTimeSelect }) {
                         className="time-input"
                     />
                 </label>
-                <button className="book-button" onClick={handleBookSlot}>
-                    Broneeri aeg
-                </button>
             </div>
         </div>
     );
