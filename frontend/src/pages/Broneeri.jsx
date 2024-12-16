@@ -15,6 +15,7 @@ function Broneeri() {
         dj: false,
         date: "", // Kuupäeva väli
         time: "", // Kellaaja väli
+        location: ""
     });
 
     // Vormiväljade muutmine
@@ -42,7 +43,7 @@ function Broneeri() {
 
         // Kontrollime, kas kõik väljad on täidetud
         if (!formData.date || !formData.time) {
-            alert("Palun vali kuupäev ja kellaaeg!");
+            toast.error("Palun vali kuupäev ja kellaaeg!");
             return;
         }
 
@@ -58,13 +59,13 @@ function Broneeri() {
             const querySnapshot = await getDocs(q);
 
             if (!querySnapshot.empty) {
-                alert("See aeg on juba broneeritud! Palun vali teine aeg.");
+                toast.error("See aeg on juba broneeritud! Palun vali teine aeg.");
                 return; // Lõpetame funktsiooni töö
             }
 
             // Kui aega pole broneeritud, salvestame uue broneeringu
             await addDoc(broneeringudRef, formData);
-            alert("Broneering on edukalt lisatud!");
+            toast.success("Broneering on edukalt lisatud!");
 
             // Vormiväljade tühjendamine
             setFormData({
@@ -78,7 +79,7 @@ function Broneeri() {
             });
         } catch (error) {
             console.error("Viga broneeringu lisamisel:", error.message);
-            alert("Midagi läks valesti. Kontrolli ühendust või proovige uuesti.");
+            toast.error("Midagi läks valesti. Kontrolli ühendust või proovige uuesti.");
         }
     };
 
@@ -104,6 +105,14 @@ function Broneeri() {
                             onChange={handleChange}
                             required
                         />
+                        <input
+    type="text"
+    name="location"
+    placeholder="Kuhu?"
+    value={formData.location}
+    onChange={handleChange}
+    required
+/>
                         <input
                             type="text"
                             name="drinks"
