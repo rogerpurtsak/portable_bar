@@ -46,7 +46,14 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/meist" element={<Meist />} />
           <Route path="/galerii" element={<Galerii />} />
-          <Route path="/broneeri" element={<Broneeri />} />
+          <Route
+  path="/broneeri"
+  element={
+    <ProtectedRoute isAuthenticated={isAuthenticated}>
+      <Broneeri />
+    </ProtectedRoute>
+  }
+/>
           <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
           <Route
             path="/Kasutaja"
