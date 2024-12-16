@@ -8,12 +8,12 @@ function Galerii() {
         '/hood_naine.jpg',
         '/hood_dj.jpg',
         '/hood_rahvas.jpg',
-        '/hood_rahvas.jpg',
-        '/hood_rahvas.jpg',
-        '/hood_rahvas.jpg',
-        '/hood_rahvas.jpg',
-        '/hood_rahvas.jpg',
-        '/hood_rahvas.jpg',
+        '/inimesed.jpg',
+        '/baarjajoogid.jpg',
+        '/joogid1.jpg',
+        '/joogid2.jpg',
+        
+       
     ];
 
     return (

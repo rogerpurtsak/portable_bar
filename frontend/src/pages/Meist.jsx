@@ -17,7 +17,7 @@ function Meist() {
             />
             <BackgroundSection
                 title="BAARMENID."
-                text1="Antud rõõmukoosseis sisaldab Gregorit lorem ipsum lorem ipsum lorem ipsum lorem ipsum ja Jaanust lorem ipsum lorem ipsum lorem ipsum lorem ipsum."
+                text1="Rõõmukoosseisu kuuluvad Gregor, kes oma kokteilidega oskab tuua igale sündmusele mängulisust ja vürtsi, ning Jaanus, kelle rõõmsameelne isiksus ja oskus mõista iga külalise soove teevad temast sündmuse särava tähe. Koos loovad nad atmosfääri, mis jääb kauaks meelde."
                 imageSrc="/hood_naine.jpg"
                 customStyles={{
                     minHeight: '60vh',
@@ -29,7 +29,7 @@ function Meist() {
             />
             <BackgroundSection
                 title="DJ."
-                text1="Kooseisu saate ka soetada plaadikeerutaja, kes muretseb meloodia eest teie asemel lorem ipsum lorem ipsum lorem ipsum lorem ipsum."
+                text1="Koosseisu saate ka soetada plaadikeerutaja, kes muretseb meloodia eest teie asemel. Alates hoogsatest tantsulugudest kuni õhtut lõpetavate meloodiateni – meie DJ hoolitseb selle eest, et teie sündmus jääks kauaks meelde."
                 imageSrc="/hood_dj.jpg"
                 customStyles={{
                     minHeight: '60vh',
