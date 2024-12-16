@@ -6,9 +6,10 @@ import {
   sendEmailVerification,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
+  signOut
 } from "firebase/auth";
 import { auth, db } from "../assets/firebase.js";
-import { setDoc, doc } from "firebase/firestore";
+import { getDoc, doc, setDoc } from "firebase/firestore";
 import "./Login.css";
 import { signInWithGoogle } from "../assets/authUtils";
 import GoogleLogo from "../assets/google-logo.svg";
@@ -41,9 +42,9 @@ function Login({ setIsAuthenticated }) {
 
   const handleCreateWithGoogle = async () => {
     try {
-      const user = await createAccountWithGoogle();
+      const { user, firstName } = await createAccountWithGoogle();
       console.log("Account created with Google:", user);
-      toast.success(`Tere tulemast, ${user.displayName}!`);
+      toast.success(`Tere tulemast, ${firstName || user.displayName}!`);
       setIsAuthenticated(true);
       navigate("/Kasutaja");
     } catch (error) {
@@ -55,7 +56,14 @@ function Login({ setIsAuthenticated }) {
   const handleGoogleLogin = async () => {
     try {
       const user = await signInWithGoogle();
-      console.log("Google kasutaja sisselogitud:", user);
+      const userDocRef = doc(db, "users", user.uid);
+      const userDoc = await getDoc(userDocRef);
+    if (!userDoc.exists()) {
+      // User ei eksisteeri Firestore'is
+      await signOut(auth); // Logi kasutaja välja
+      toast.error("Kasutajat selle Google'i kontoga ei leitud. Palun registreeru!");
+      return;
+    }
       setIsAuthenticated(true);
       toast.success("Sisselogimine Google'iga õnnestus!");
       navigate("/Kasutaja");
