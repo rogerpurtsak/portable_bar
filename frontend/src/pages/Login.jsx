@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "sonner";
 import {
   createUserWithEmailAndPassword,
@@ -25,6 +25,13 @@ function Login({ setIsAuthenticated }) {
   const [lastName, setLastName] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  React.useEffect(() => {
+    if (location.state?.message) {
+      toast.error(location.state.message);
+    }
+  }, [location.state]);
 
   const handleForgotPassword = async () => {
     if (!email) {
