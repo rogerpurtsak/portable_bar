@@ -64,7 +64,12 @@ function App() {
             }
           />
         </Routes>
-        <FloatingIcon src="floatingicon.png" alt="Contact Us" link="mailto:hood@baar.ee" />
+        <FloatingIcon
+              src="floatingicon.png"
+              alt="Contact Us"
+              link="https://mail.google.com/mail/?view=cm&fs=1&to=hood@baar.ee"
+            />
+
       </div>
       <Footer />
     </Router>
