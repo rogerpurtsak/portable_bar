@@ -14,7 +14,7 @@ function Header({ isAuthenticated }) {
         <img className="logo-img" src="hood_logo.png" alt="HOOD logo" />
       </Link>
       <button className="menu-button" onClick={toggleLinks}>
-        Menu
+        Menüü
       </button>
       <div className={`links ${isLinksVisible ? "show" : ""}`}>
         <Link to="/" className="nav-link">Avaleht</Link>

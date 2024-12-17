@@ -31,6 +31,8 @@
     border-radius: 12px;
     box-shadow: 0 4px 12px #9a643e;
     text-align: left;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 /* Responsive styles for smaller screens */
@@ -222,4 +224,92 @@
     border-radius: 5px;
     font-size: 1rem;
   }
+
+.booking-list {
+    margin-top: 20px;
+    list-style: none;
+    padding: 0;
+  }
+
+  .bookings {
+    margin-bottom: 50px;
+  }
+  
+  .booking-item {
+    background-color: #C0A897;
+    border: 1px solid #9a643e;
+    box-shadow: inset 0 0px 8px #9a643e;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    color: #483C32;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  .booking-item p {
+    margin: 5px 0;
+  }
+  
+  .booking-item p strong {
+    color: #333;
+  }
+  
+  .no-bookings {
+    font-size: 1rem;
+    color: #9a643e;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+.booking-edit-input {
+    width: 100%;
+    padding: 8px 12px;
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #483C32;
+    background-color: #F3E6D8;
+    border: 1px solid #9a643e;
+    border-radius: 5px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .booking-edit-input:focus {
+    border-color: #CC7B40;
+    box-shadow: 0 0 5px rgba(204, 123, 64, 0.8);
+    outline: none;
+  }
+  
+  .booking-edit-btn {
+    padding: 8px 16px;
+    margin-right: 10px;
+    font-size: 1rem;
+    background-color: #483C32;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .booking-edit-btn:hover {
+    background-color: #6c5e54;
+  }
+  
+  .booking-cancel-btn {
+    padding: 8px 16px;
+    font-size: 1rem;
+    background-color: #CC7B40;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .booking-cancel-btn:hover {
+    background-color: #8c532a;
+  }
+  
   
